@@ -26,14 +26,14 @@ init:
 pyinstaller: clean
 	pyinstaller --noconfirm --onefile --windowed \
 		-n smb3splitoffsetter \
-		smb3splitoffsetter.py
+		app.py
 	cp -r img/ dist/
 	cp README.* dist/
 	7z a smb3splitoffsetter.zip dist/*
 	7z rn smb3splitoffsetter.zip dist smb3splitoffsetter
 
 run-app:
-	python -m smb3splitoffsetter
+	python -m smb3splitoffsetter.main
 
 release-test: clean
 	python setup.py sdist bdist_wheel

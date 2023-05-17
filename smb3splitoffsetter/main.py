@@ -5,7 +5,7 @@ import re
 import xml.etree.ElementTree as ET
 
 from smb3splitoffsetter.deltas import get_deltas
-from smb3splitoffsetter.parser import get_in_out_files
+from smb3splitoffsetter.models import OffsetTypes
 
 
 def get_time(time_element):
@@ -24,11 +24,10 @@ def set_time(time_element, time):
     time_element.text = datetime.datetime.strftime(time, "%H:%M:%S.%f")
 
 
-def main():
-    infile, outfile = get_in_out_files()
+def main(infile: str, outfile: str, type: str):
     tree = ET.parse(infile)
     root = tree.getroot()
-    deltas = get_deltas()
+    deltas = get_deltas(OffsetTypes[type.upper()])
 
     for world, segment in enumerate(root.find("Segments"), start=1):
         dt_split = datetime.timedelta(seconds=deltas[world])
@@ -45,7 +44,3 @@ def main():
                 set_time(segment_time.find("RealTime"), t + dt_segment)
 
     tree.write(outfile)
-
-
-if __name__ == "__main__":
-    main()

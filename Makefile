@@ -1,4 +1,4 @@
-default: t
+default: ui
 
 clean: clean-build clean-pyc clean-installer
 c: clean
@@ -32,8 +32,6 @@ pyinstaller: clean
 	7z a smb3splitoffsetter.zip dist/*
 	7z rn smb3splitoffsetter.zip dist smb3splitoffsetter
 
-run-cli:
-	python -m smb3splitoffsetter.cli
 
 release-test: clean
 	python setup.py sdist bdist_wheel
@@ -45,4 +43,8 @@ release-prod: clean
 
 release: release-test release-prod clean
 
-cli: run-cli
+cli:
+	python -m smb3splitoffsetter.cli
+
+ui:
+	python -m smb3splitoffsetter.ui

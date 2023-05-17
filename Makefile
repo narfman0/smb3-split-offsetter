@@ -25,9 +25,7 @@ init:
 
 pyinstaller: clean
 	pyinstaller --noconfirm --onefile --windowed \
-		-n smb3splitoffsetter \
-		app.py
-	cp -r img/ dist/
+		-n smb3splitoffsetter app.py
 	cp README.* dist/
 	7z a smb3splitoffsetter.zip dist/*
 	7z rn smb3splitoffsetter.zip dist smb3splitoffsetter

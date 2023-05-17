@@ -48,7 +48,11 @@ class App(tk.Frame):
         self.outfile.set(asksaveasfilename())
 
 
-if __name__ == "__main__":
+def ui():
     root = tk.Tk()
     myapp = App(root)
     myapp.mainloop()
+
+
+if __name__ == "__main__":
+    ui()

@@ -24,10 +24,12 @@ def set_time(time_element, time):
     time_element.text = datetime.datetime.strftime(time, "%H:%M:%S.%f")
 
 
-def main(infile: str, outfile: str, type: str):
+def main(
+    infile: str, outfile: str, original_type: OffsetTypes, target_type: OffsetTypes
+):
     tree = ET.parse(infile)
     root = tree.getroot()
-    deltas = get_deltas(OffsetTypes[type.upper()])
+    deltas = get_deltas(original_type, target_type)
 
     for world, segment in enumerate(root.find("Segments"), start=1):
         dt_split = datetime.timedelta(seconds=deltas[world])

@@ -2,7 +2,7 @@ from setuptools import setup, find_packages
 
 setup(
     name="smb3-split-offsetter",
-    version="1.0.0",
+    version="1.1.0",
     description=("Offset livesplit splits in SMB3"),
     classifiers=[
         "Development Status :: 4 - Beta",
